@@ -21,35 +21,19 @@ class Inverted_Index:
         self.skip = skip
         self.optimal = optimal
 
-    
-    # length() của posting-list
     # Số lượng tài liệu khác nhau trong hệ thống mà từ word xuất hiện trong chúng.
-    # df là viết tắt của "document frequency" (tần suất xuất hiện trong tài liệu).
-    # Ví dụ, nếu từ "apple" xuất hiện trong tài liệu 1 và 2, thì df("apple") sẽ trả về số 2.
     def df(self, word):
         return len(self.dictionary[word])
 
-    # Trả về danh sách các tài liệu mà từ word xuất hiện trong chúng, 
-    # được sắp xếp theo thứ tự tăng dần của số thứ tự tài liệu (docID). 
+    # Trả về danh sách các tài liệu mà từ word xuất hiện trong chúng.
     def get_posting_list(self, word):
         return self.dictionary[word]   
-
-    # lấy nội dung danh sách các tài liệu dựa trên danh sách các ID tài liệu cụ thể.
-    # Hay : ấy nội dung danh sách các item trong cái posting-list
-    # def get_documents(self, listDocID):
-    #     results = []
-    #     for docID in listDocID: 
-    #         results.append([docID, self.documents[docID-1]])
-    #     return results
 
     # Trả về giá trị của phần tử tại vị trí bước nhảy tiếp theo của danh sách posting list.
     def val_skip(self, p, i):
         return p[i + self.skip] 
 
     # Kiểm tra xem có bước nhảy tiếp theo hay không. 
-    # Nếu vị trí hiện tại cộng với bước nhảy (self.skip) 
-    # vượt quá độ dài của posting list thì không có bước nhảy tiếp theo 
-    # và phương thức trả về giá trị False. Nếu không, phương thức trả về giá trị True.
     def hasSkip(self, p, i):
         return False if i + self.skip >= len(p) else True
     
@@ -57,8 +41,6 @@ class Inverted_Index:
     def intersect_2_set(self, p1, p2):
         return self.intersect(p1, p2) if self.skip == 1 else self.intersectWithSkips(p1, p2)
     
-    # lấy ra những văn bản đồng thời chứa từ word này
-    # p1, p2: 2 cái posting-list mình so sánh
     # return về tập giao của 2 posting-list
     def intersect(self, p1, p2):
         i = 0
@@ -101,10 +83,6 @@ class Inverted_Index:
     
     # tối ưu câu truy vấn
     def optimize(self, tokens): 
-        # xếp theo thứ tự tăng dần df
-        # các từ khóa được sắp xếp theo thứ tự tăng dần của độ phổ biến của chúng, 
-        # các từ có độ phổ biến thấp hơn sẽ được sử dụng trước, 
-        # từ đó giúp giảm thời gian tìm kiếm và cải thiện kết quả truy vấn.
 
         # sắp xếp tăng dần dựa trên df 
         return sorted(tokens, key = lambda word: self.df(word))  

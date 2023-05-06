@@ -51,10 +51,5 @@ if __name__ == '__main__':
 
     # Tạo file từ vựng và file văn bản từ file doc - text
     np.save('./documents.npy', documents, allow_pickle=True)
-
-    # Với file documents.npy, nội dung sẽ được lưu dưới dạng danh sách các văn bản:
-    # ['compact memories have flexible capacities  a digital data storage\nsystem with capacity up to bits and random and or sequential access\nis described',
-    #  'an electronic analogue computer for solving systems of linear equations\nmathematical derivation of the operating principle and stability\nconditions for a computer consisting of amplifiers']
     
     print("Done!")
-
