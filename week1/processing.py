@@ -26,7 +26,7 @@ def load_query():
     
     return queries
 
-###################################################################################
+#______________________________________#
 
 if __name__ == '__main__':
 
@@ -49,20 +49,12 @@ if __name__ == '__main__':
         index = document.find(" ")
         documents.append(document[index+1:])
 
-    # tạo danh sách từ 
-    vocabs = list(set(" ".join(documents).strip().split()))
-    vocabs = [word for word in vocabs if word not in stop_words]
-
     # Tạo file từ vựng và file văn bản từ file doc - text
     np.save('./documents.npy', documents, allow_pickle=True)
-    np.save('./vocabs.npy', vocabs, allow_pickle=True)
 
     # Với file documents.npy, nội dung sẽ được lưu dưới dạng danh sách các văn bản:
     # ['compact memories have flexible capacities  a digital data storage\nsystem with capacity up to bits and random and or sequential access\nis described',
     #  'an electronic analogue computer for solving systems of linear equations\nmathematical derivation of the operating principle and stability\nconditions for a computer consisting of amplifiers']
-
-    # Với file vocabs.npy, nội dung sẽ được lưu dưới dạng danh sách các từ vựng xuất hiện trong các văn bản:
-    # ['flexible', 'described', 'mathematical', 'access', 'capacities', 'storage', 'computer', 'up', 'consisting', 'analogue', 'linear', 'sequential', 'bits', 'system', 'amplifiers', 'random', 'digital', 'conditions', 'operating', 'solving', 'memories', 'principle', 'derivati...']
     
     print("Done!")
 
