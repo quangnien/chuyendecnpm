@@ -107,7 +107,6 @@ class Inverted_Index:
 
 if __name__ == '__main__':
 
-
     I_index = Inverted_Index("./invertedIndex.npy", "./documents.npy", skip = 3, optimal= True)
 
     queries = processing.load_query()

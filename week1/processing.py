@@ -2,6 +2,8 @@
 # N19DCCN096 - Cao Văn Lâm
 # N19DCCN116 - Nguyễn Quang Niên
 
+
+
 import numpy as np
 
 from nltk.corpus import stopwords
