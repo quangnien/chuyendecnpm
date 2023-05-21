@@ -33,7 +33,7 @@ class BIM():
         n = np.sum(self.vectors, axis=0) #n=df
 
         #ci = log( (N-ni+0.5)/(ni+0.5) )
-        self.weights = np.log((N-n+0.5)/(n+0.5))
+        self.weights = np.log10((N-n+0.5)/(n+0.5))
 
 
     #ranking
@@ -62,7 +62,7 @@ class BIM():
         # ri = (n - |Vi| + 0.5) / (N - |Vi| + 1)
         ri = (n - n_vi + 0.5) / (N - N_rel + 1)
         # Update weight ci = log[ (pi.(1-ri))/(ri.(1-pi)) ]
-        self.weights[qi_1] = np.log(pi / (1 - pi)) - np.log(ri / (1 - ri))
+        self.weights[qi_1] = np.log10(pi / (1 - pi)) - np.log10(ri / (1 - ri))
 
 
     def answer(self, query):
